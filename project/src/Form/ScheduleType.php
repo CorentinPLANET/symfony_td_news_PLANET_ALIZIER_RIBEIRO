@@ -22,7 +22,7 @@ class ScheduleType extends AbstractType
             ->add('dates')
             ->add('promo', EntityType::class, [
                 'class' => Promo::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
         ;
     }
