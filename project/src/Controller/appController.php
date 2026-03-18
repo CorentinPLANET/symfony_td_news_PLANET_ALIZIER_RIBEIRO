@@ -14,7 +14,7 @@ class appController extends AbstractController
     {
         $body = "<div class='schedule'></div>";
         return $this->render('base.html.twig', [
-
+            'title' => "Newsletter",
             'body' => 'Hello World!'
 
         ]);
