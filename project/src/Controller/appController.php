@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class appController extends AbstractController
 {
 
-    #[Route('/')]
+    ###[Route('/')]
     public function mainApp(): Response
     {
         $body = "<div class='schedule'></div>";

@@ -14,12 +14,12 @@ class Schedule
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: Promo::class, inversedBy: 'id')]
-    #[ORM\Column]
-    private Promo $promo;
+    #[ORM\ManyToOne(inversedBy: 'schedules')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Promo $promo = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $matine = null;
+    #[ORM\Column]
+    private ?bool $matine = null;
 
     #[ORM\Column(length: 255)]
     private ?string $cours = null;
@@ -41,31 +41,24 @@ class Schedule
         return $this->id;
     }
 
-    public function setId(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
     public function getPromo(): ?Promo
     {
         return $this->promo;
     }
 
-    public function setPromoId(?Promo $promo): self
+    public function setPromo(?Promo $promo): static
     {
         $this->promo = $promo;
 
         return $this;
     }
 
-    public function getMatine(): ?int
+    public function isMatine(): ?bool
     {
         return $this->matine;
     }
 
-    public function setMatine(int $matine): static
+    public function setMatine(bool $matine): static
     {
         $this->matine = $matine;
 

@@ -3,9 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\PromoRepository;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PromoRepository::class)]
 class Promo
@@ -18,19 +18,20 @@ class Promo
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(targetEntity: Schedule::class, mappedBy: 'schedule')]
-    private Collection $schedule;
+    /**
+     * @var Collection<int, Schedule>
+     */
+    #[ORM\OneToMany(targetEntity: Schedule::class, mappedBy: 'promo')]
+    private Collection $schedules;
+
+    public function __construct()
+    {
+        $this->schedules = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -45,12 +46,33 @@ class Promo
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->schedule = new ArrayCollection();
-    }
+    /**
+     * @return Collection<int, Schedule>
+     */
     public function getSchedules(): Collection
     {
-        return $this->schedule;
+        return $this->schedules;
+    }
+
+    public function addSchedule(Schedule $schedule): static
+    {
+        if (!$this->schedules->contains($schedule)) {
+            $this->schedules->add($schedule);
+            $schedule->setPromo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSchedule(Schedule $schedule): static
+    {
+        if ($this->schedules->removeElement($schedule)) {
+            // set the owning side to null (unless already changed)
+            if ($schedule->getPromo() === $this) {
+                $schedule->setPromo(null);
+            }
+        }
+
+        return $this;
     }
 }
