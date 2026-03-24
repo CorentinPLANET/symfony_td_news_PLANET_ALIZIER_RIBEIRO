@@ -31,10 +31,10 @@ class ScheduleType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Schedule::class,
-        ]);
-    }
+	public function configureOptions(OptionsResolver $resolver): void
+	{
+		$resolver->setDefaults([
+			'data_class' => Schedule::class,
+		]);
+	}
 }
