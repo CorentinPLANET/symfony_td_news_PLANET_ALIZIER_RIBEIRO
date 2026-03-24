@@ -8,26 +8,24 @@
 
 	<table class="table">
 		<thead>
-			<tr>
-				<th>Matine</th>
-				<th>Cours</th>
-				<th>Professeur</th>
-				<th>Salle</th>
-				<th>Specialite</th>
-				<th>Dates</th>
-				<th>Promo</th>
-				<th>actions</th>
-			</tr>
+			<th>Cours</th>
+			<th>Professeur</th>
+			<th>Salle</th>
+			<th>Specialite</th>
+			<th>Dates</th>
+			<th>Matine</th>
+			<th>Promo</th>
+			<th>actions</th>
 		</thead>
 		<tbody>
 			{% for schedule in schedules %}
 				<tr>
-					<td>{{ schedule.matine ? 'Matin' : 'Soir' }}</td>
 					<td>{{ schedule.cours }}</td>
 					<td>{{ schedule.professeur }}</td>
 					<td>{{ schedule.salle }}</td>
 					<td>{{ schedule.specialite }}</td>
 					<td>{{ schedule.dates ? schedule.dates|date('d-m-Y') : '' }}</td>
+					<td>{{ schedule.matine.name}}</td>
 					<td>{{ schedule.promo.name }}</td>
 					<td>
 						<a href="{{ path('app_schedule_show', {'id': schedule.id}) }}">show</a>
@@ -39,7 +37,7 @@
 					<td colspan="8">no records found</td>
 				</tr>
 			{% endfor %}
-		</tbody>	
+		</tbody>
 	</table>
 	<a href="{{ path('app_schedule_new') }}">Create new</a>
 {% endblock %}
