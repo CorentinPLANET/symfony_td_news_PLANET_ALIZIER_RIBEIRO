@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Matine;
 use App\Entity\Promo;
 use App\Entity\Schedule;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -14,12 +15,15 @@ class ScheduleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('matine')
             ->add('cours')
             ->add('professeur')
             ->add('salle')
             ->add('specialite')
             ->add('dates')
+            ->add('matine', EntityType::class, [
+                'class' => Matine::class,
+                'choice_label' => 'name'
+            ])
             ->add('promo', EntityType::class, [
                 'class' => Promo::class,
                 'choice_label' => 'name',

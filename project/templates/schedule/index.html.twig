@@ -8,12 +8,12 @@
 
 	<table class="table">
 		<thead>
-			<th>Matine</th>
 			<th>Cours</th>
 			<th>Professeur</th>
 			<th>Salle</th>
 			<th>Specialite</th>
 			<th>Dates</th>
+			<th>Matine</th>
 			<th>Promo</th>
 			<th>actions</th>
 		</thead>
@@ -22,12 +22,12 @@
 <tbody>
 	{% for schedule in schedules %}
 		<tr>
-			<td>{{ schedule.matine ? 'Soir' : 'Matin' }}</td>
 			<td>{{ schedule.cours }}</td>
 			<td>{{ schedule.professeur }}</td>
 			<td>{{ schedule.salle }}</td>
 			<td>{{ schedule.specialite }}</td>
 			<td>{{ schedule.dates ? schedule.dates|date('d-m-Y') : '' }}</td>
+			<td>{{ schedule.matine.name}}</td>
 			<td>{{ schedule.promo.name }}</td>
 			<td>
 				<a href="{{ path('app_schedule_show', {'id': schedule.id}) }}">show</a>

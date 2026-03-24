@@ -18,9 +18,6 @@ class Schedule
     #[ORM\JoinColumn(nullable: false)]
     private ?Promo $promo = null;
 
-    #[ORM\Column]
-    private ?bool $matine = null;
-
     #[ORM\Column(length: 255)]
     private ?string $cours = null;
 
@@ -36,6 +33,9 @@ class Schedule
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTime $dates = null;
 
+    #[ORM\ManyToOne(inversedBy: 'schedules')]
+    private ?Matine $matine = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,18 +49,6 @@ class Schedule
     public function setPromo(?Promo $promo): static
     {
         $this->promo = $promo;
-
-        return $this;
-    }
-
-    public function isMatine(): ?bool
-    {
-        return $this->matine;
-    }
-
-    public function setMatine(bool $matine): static
-    {
-        $this->matine = $matine;
 
         return $this;
     }
@@ -121,6 +109,18 @@ class Schedule
     public function setDates(\DateTime $dates): static
     {
         $this->dates = $dates;
+
+        return $this;
+    }
+
+    public function getMatine(): ?Matine
+    {
+        return $this->matine;
+    }
+
+    public function setMatine(?Matine $matine): static
+    {
+        $this->matine = $matine;
 
         return $this;
     }
