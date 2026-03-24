@@ -29,7 +29,28 @@
 			<li>Your template at
 				<code>/var/www/templates/index/index.html.twig</code>
 			</li>
-		</ul>
-	</div>
 
-{% endblock %}
+		</ul>
+		<table class="table">
+			<thead>
+				<th>Cours</th>
+				<th>Professeur</th>
+				<th>Salle</th>
+				<th>Specialite</th>
+				<th>Dates</th>
+				<th>Matine</th>
+				<th>Promo</th>
+			</thead>
+			<tbody>
+				{% for schedule in schedules %}
+					<tr>
+						<td>{{ schedule.cours }}</td>
+						<td>{{ schedule.professeur }}</td>
+						<td>{{ schedule.salle }}</td>
+						<td>{{ schedule.specialite }}</td>
+						<td>{{ schedule.dates ? schedule.dates|date('d-m-Y') : '' }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</div>
+	{% endblock %}
