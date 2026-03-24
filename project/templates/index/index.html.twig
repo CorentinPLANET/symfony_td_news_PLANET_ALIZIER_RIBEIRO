@@ -1,56 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndexController!
+{% block title %}WhatsNew
 {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-	</style>
-
-	<div class="example-wrapper">
-		<h1>Hello
-			{{ controller_name }}! ✅</h1>
-
-		This friendly message is coming from:
-		<ul>
-			<li>Your controller at
-				<code>/var/www/src/Controller/IndexController.php</code>
-			</li>
-			<li>Your template at
-				<code>/var/www/templates/index/index.html.twig</code>
-			</li>
-
-		</ul>
-		<table class="table">
-			<thead>
-				<th>Cours</th>
-				<th>Professeur</th>
-				<th>Salle</th>
-				<th>Specialite</th>
-				<th>Dates</th>
-				<th>Matine</th>
-				<th>Promo</th>
-			</thead>
-			<tbody>
-				{% for schedule in schedules %}
-					<tr>
-						<td>{{ schedule.cours }}</td>
-						<td>{{ schedule.professeur }}</td>
-						<td>{{ schedule.salle }}</td>
-						<td>{{ schedule.specialite }}</td>
-						<td>{{ schedule.dates ? schedule.dates|date('d-m-Y') : '' }}</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</div>
-	{% endblock %}
+	<table class="table">
+		<thead>
+			<th>Cours</th>
+			<th>Professeur</th>
+			<th>Salle</th>
+			<th>Specialite</th>
+			<th>Dates</th>
+			<th>Matine</th>
+			<th>Promo</th>
+		</thead>
+		<tbody>
+			{% for schedule in schedules %}
+				<tr>
+					<td>{{ schedule.cours }}</td>
+					<td>{{ schedule.professeur }}</td>
+					<td>{{ schedule.salle }}</td>
+					<td>{{ schedule.specialite }}</td>
+					<td>{{ schedule.dates ? schedule.dates|date('d-m-Y') : '' }}</td>
+					<td>{{ schedule.matine }}</td>
+					<td>{{ schedule.promo }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</div>
+{% endblock %}

@@ -28,7 +28,9 @@ class ScheduleRepository extends ServiceEntityRepository
 
         $conn = $this->getEntityManager()->getConnection();
 
-        $sql = 'SELECT schedule.cours,schedule.professeur,schedule.salle,schedule.specialite,schedule.dates FROM schedule
+        $sql = 'SELECT schedule.cours,schedule.professeur,schedule.salle,schedule.specialite,schedule.dates,promo.name AS promo,matine.name AS matine FROM schedule
+                INNER JOIN promo ON schedule.promo_id = promo.id 
+                INNER JOIN matine ON schedule.matine_id = matine.id
                 WHERE dates between :start and :end
                 ORDER BY dates ASC';
 
