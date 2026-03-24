@@ -14,6 +14,7 @@
 			<th>Salle</th>
 			<th>Specialite</th>
 			<th>Dates</th>
+			<th>Promo</th>
 			<th>actions</th>
 		</thead>
 	</tr>
@@ -27,6 +28,7 @@
 			<td>{{ schedule.salle }}</td>
 			<td>{{ schedule.specialite }}</td>
 			<td>{{ schedule.dates ? schedule.dates|date('d-m-Y') : '' }}</td>
+			<td>{{ schedule.promo.name }}</td>
 			<td>
 				<a href="{{ path('app_schedule_show', {'id': schedule.id}) }}">show</a>
 				<a href="{{ path('app_schedule_edit', {'id': schedule.id}) }}">edit</a>
